@@ -7,7 +7,7 @@ use Sportic\Omniresult\Endu\Scrapers\EventCollectionPage as PageScraper;
 use Sportic\Omniresult\Endu\Parsers\EventCollectionPage as PageParser;
 
 /**
- * Class EventPageTest
+ * Class EventCollectionPageTest
  * @package Sportic\Omniresult\Endu\Tests\Scrapers
  */
 class EventCollectionPageTest extends AbstractPageTest

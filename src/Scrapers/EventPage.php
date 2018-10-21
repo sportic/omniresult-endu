@@ -51,12 +51,25 @@ class EventPage extends AbstractScraper
     }
 
     /**
+     * @return array
+     */
+    protected function generateParserData()
+    {
+        $this->getRequest();
+
+        return [
+            'response' => $this->getClient()->getResponse(),
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getCrawlerUri()
     {
-        return $this->getCrawlerUriHost() . '/events'
-            . '/' . $this->getEventSlug()
-            . '/';
+        return $this->getS3Path()
+            . 'results/results-'
+            . $this->getHash()
+            . '.jsonp';
     }
 }

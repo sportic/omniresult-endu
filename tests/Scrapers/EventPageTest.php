@@ -3,14 +3,14 @@
 namespace Sportic\Omniresult\Endu\Tests\Scrapers;
 
 use PHPUnit\Framework\TestCase;
-use Sportic\Omniresult\Endu\Scrapers\ResultsPage;
+use Sportic\Omniresult\Endu\Scrapers\EventPage;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class ResultsPageTest
  * @package Sportic\Omniresult\Endu\Tests\Scrapers
  */
-class ResultsPageTest extends TestCase
+class EventPageTest extends TestCase
 {
     public function testGetCrawlerUri()
     {
@@ -39,7 +39,7 @@ class ResultsPageTest extends TestCase
     }
 
     /**
-     * @return ResultsPage
+     * @return EventPage
      */
     protected function getScraper()
     {
@@ -47,7 +47,7 @@ class ResultsPageTest extends TestCase
             's3_path' => 'https://ecs-eventi.s3.amazonaws.com/00000000/00040000/00042100/00042143/',
             'hash' => 'b8d7f265a7bb24df4b8fbc4a9ce1cf7a',
         ];
-        $scraper = new ResultsPage();
+        $scraper = new EventPage();
         $scraper->initialize($params);
         return $scraper;
     }

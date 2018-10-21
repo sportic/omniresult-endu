@@ -9,6 +9,7 @@ use Sportic\Omniresult\Endu\Parsers\AbstractParser;
 use Sportic\Omniresult\Endu\Scrapers\AbstractScraper;
 use Sportic\Omniresult\Endu\Parsers\EventPage as EventPageParser;
 use Sportic\Omniresult\Endu\Tests\AbstractTest;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -49,6 +50,27 @@ abstract class AbstractPageTest extends AbstractTest
 //            TEST_FIXTURE_PATH . DS . 'Parsers' . DS . $fixturePath . '.serialized',
 //            serialize($parser->getContent()->all())
 //        );
+
+        return $parametersParsed;
+    }
+
+    /**
+     * @param AbstractParser $parser
+     * @param AbstractScraper $scrapper
+     * @param $fixturePath
+     * @return mixed
+     */
+    public static function initParserFromFixturesJsonp($parser, $scrapper, $fixturePath)
+    {
+        $response = new Response(
+            file_get_contents(
+                TEST_FIXTURE_PATH . DS . 'Parsers' . DS . $fixturePath . '.jsonp'
+            )
+        );
+
+        $parser->initialize(['response' => $response]);
+
+        $parametersParsed = $parser->getContent();
 
         return $parametersParsed;
     }

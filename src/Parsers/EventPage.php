@@ -2,7 +2,7 @@
 
 namespace Sportic\Omniresult\Endu\Parsers;
 
-use Sportic\Omniresult\Common\Content\RecordContent;
+use Sportic\Omniresult\Common\Content\ListContent;
 use Sportic\Omniresult\Common\Models\Event;
 use Sportic\Omniresult\Common\Models\Race;
 
@@ -20,14 +20,42 @@ class EventPage extends AbstractParser
     protected function generateContent()
     {
         $configArray = $this->getConfigArray();
+        $races = $this->parseRaces($configArray);
 
-        $eventParams['id'] = $configArray['event']['id'];
-        $eventParams['name'] = $configArray['event']['alabel'];
-        $eventParams['editions'] = $configArray['event']['editions'];
         $params = [
-            'record' => new Event($eventParams)
+            'records' => $races
         ];
+
         return $params;
+    }
+
+    /**
+     * @param $config
+     * @return Race[]
+     */
+    public function parseRaces($config)
+    {
+        $racesArray = $config['ga'];
+        $return = [];
+        foreach ($racesArray as $raceArray) {
+            $return[] = $this->parseRace($raceArray);
+        }
+        return $return;
+    }
+
+    /**
+     * @param $config
+     * @return Race
+     */
+    protected function parseRace($config)
+    {
+        $parameters = [
+            'id' => $config['id'],
+            'name' => $config['nm'],
+            'endpoint' => $config['cl'][0]['da'],
+        ];
+        $race = new Race($parameters);
+        return $race;
     }
 
     /**
@@ -36,62 +64,30 @@ class EventPage extends AbstractParser
     protected function getConfigArray()
     {
         $configHtml = $this->getConfigString();
-        $configHtml = $this->prepareConfigString($configHtml);
 
         $data = json_decode($configHtml, true);
         return $data;
     }
 
     /**
-     * @param $configString
-     * @return string
+     * @return mixed|string
      */
-    protected function prepareConfigString($configString)
-    {
-        $trans = [
-            "'en'" => '"en"',
-            "''" => '""',
-            "'https://" => '"https://',
-            ".net'" => '.net"'
-        ];
-        $fields = [
-            'lang',
-            'account',
-            'athlete',
-            'card',
-            'event',
-            'api',
-            'api_keys',
-            'ws',
-            'policies',
-            'relation',
-            'system_lang',
-            'www',
-            'login',
-            'images'
-        ];
-        foreach ($fields as $field) {
-            $trans[' ' . $field . ':'] = ' "' . $field . '":';
-        }
-        $configString = strtr($configString, $trans);
-        return $configString;
-    }
-
     protected function getConfigString()
     {
-        $html = $this->getCrawler()->html();
-        $posConfig = strpos($html, 'global.CONFIG = {');
-        $configHtml = substr($html, $posConfig + 15);
-        $posEndConfig = strpos($configHtml, '};');
-        return substr($configHtml, 0, $posEndConfig + 1);
+        $string = $this->getResponse()->getContent();
+        $string = str_replace('jresults(', '', $string);
+        $string = str_replace(');', '', $string);
+
+        return $string;
     }
+
 
     /** @noinspection PhpMissingParentCallCommonInspection
      * @inheritdoc
      */
     protected function getContentClassName()
     {
-        return RecordContent::class;
+        return ListContent::class;
     }
 
     /** @noinspection PhpMissingParentCallCommonInspection
@@ -99,6 +95,6 @@ class EventPage extends AbstractParser
      */
     public function getModelClassName()
     {
-        return Event::class;
+        return Race::class;
     }
 }
