@@ -4,7 +4,7 @@ require '../vendor/autoload.php';
 
 $parameters = [
     'event' => '42143',
-    'hash' => '204927_99PQGBZQWO.jsonp',
+    'hash' => '204951_8J4747PGC0.jsonp',
 ];
 
 $client = new \Sportic\Omniresult\Endu\EnduClient();

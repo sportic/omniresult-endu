@@ -493,16 +493,16 @@
         },
         {
             "name": "sportic/omniresult-common",
-            "version": "1.0.32",
+            "version": "1.0.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sportic/omniresult-common.git",
-                "reference": "57283af22c22524e619e3b025b53871099709f4f"
+                "reference": "13b29ac1d7a32c74115ba98277f6a6302972e3af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sportic/omniresult-common/zipball/57283af22c22524e619e3b025b53871099709f4f",
-                "reference": "57283af22c22524e619e3b025b53871099709f4f",
+                "url": "https://api.github.com/repos/sportic/omniresult-common/zipball/13b29ac1d7a32c74115ba98277f6a6302972e3af",
+                "reference": "13b29ac1d7a32c74115ba98277f6a6302972e3af",
                 "shasum": ""
             },
             "require": {
@@ -533,7 +533,7 @@
                 }
             ],
             "description": "a common client scraper for getting data from timing websites",
-            "time": "2018-10-21T10:41:46+00:00"
+            "time": "2018-10-21T11:27:53+00:00"
         },
         {
             "name": "symfony/browser-kit",

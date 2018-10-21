@@ -1,0 +1,36 @@
+<?php
+
+namespace Sportic\Omniresult\Endu\Tests\Parsers;
+
+use Sportic\Omniresult\Common\Models\Race;
+use Sportic\Omniresult\Common\Models\Result;
+use Sportic\Omniresult\Endu\Scrapers\ResultsPage as PageScraper;
+use Sportic\Omniresult\Endu\Parsers\ResultsPage as PageParser;
+
+/**
+ * Class ResultsPageTest
+ * @package Sportic\Omniresult\Endu\Tests\Scrapers
+ */
+class ResultsPageTest extends AbstractPageTest
+{
+    public function testGenerateContentRaces()
+    {
+        $parametersParsed = static::initParserFromFixturesJsonp(
+            new PageParser(),
+            (new PageScraper()),
+            'ResultsPage/SimpleEvent/event_page'
+        );
+
+        $results = $parametersParsed->getRecords();
+        self::assertCount(1048, $results);
+
+        /** @var Result $firstResult */
+        $firstResult = $results[0];
+        self::assertInstanceOf(Result::class, $firstResult);
+
+        self::assertSame('1', $firstResult->getPosGen());
+        self::assertSame('KIPKEMBOI HOSEA', $firstResult->getFullName());
+        self::assertSame('2:11:31', $firstResult->getTime());
+        self::assertSame('TOP', $firstResult->getCategory());
+    }
+}

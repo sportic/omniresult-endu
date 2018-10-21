@@ -3,7 +3,6 @@
 namespace Sportic\Omniresult\Endu\Parsers;
 
 use Sportic\Omniresult\Common\Content\ListContent;
-use Sportic\Omniresult\Common\Models\Event;
 use Sportic\Omniresult\Common\Models\Race;
 
 /**
