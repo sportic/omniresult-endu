@@ -31,4 +31,12 @@ abstract class AbstractScraper extends \Sportic\Omniresult\Common\Scrapers\Abstr
     {
         return 'https://www.endu.net/en';
     }
+
+    /**
+     * @return string
+     */
+    protected function getAmazonS3Host()
+    {
+        return 'https://ecs-eventi.s3.amazonaws.com';
+    }
 }

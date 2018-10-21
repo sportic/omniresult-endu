@@ -2,6 +2,7 @@
 
 namespace Sportic\Omniresult\Endu\Scrapers;
 
+use Sportic\Omniresult\Endu\Helper;
 use Sportic\Omniresult\Endu\Parsers\EventPage as Parser;
 
 /**
@@ -17,7 +18,16 @@ class ResultsPage extends AbstractScraper
      */
     public function getS3Path()
     {
+        if (!$this->hasParameter('s3_path')) {
+            $this->initS3Path();
+        }
         return $this->getParameter('s3_path');
+    }
+
+    protected function initS3Path()
+    {
+        $idEvent = $this->getParameter('event');
+        $this->setParameter('s3_path', Helper::generateEventPath($idEvent));
     }
 
     /**
@@ -38,9 +48,20 @@ class ResultsPage extends AbstractScraper
             'GET',
             $this->getCrawlerUri()
         );
-        $response = $client->getResponse();
 
         return $crawler;
+    }
+
+    /**
+     * @return array
+     */
+    protected function generateParserData()
+    {
+        $this->getRequest();
+
+        return [
+            'response' => $this->getClient()->getResponse(),
+        ];
     }
 
     /**
@@ -48,9 +69,10 @@ class ResultsPage extends AbstractScraper
      */
     public function getCrawlerUri()
     {
-        return $this->getS3Path()
-            . 'results/results-'
-            . $this->getHash()
-            . '.jsonp';
+        return $this->getAmazonS3Host()
+            . $this->getS3Path()
+            . 'results/jsonp/'
+            . $this->getHash();
     }
+
 }
