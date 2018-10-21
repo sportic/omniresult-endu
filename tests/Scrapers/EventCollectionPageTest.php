@@ -36,7 +36,7 @@ class EventCollectionPageTest extends TestCase
         static::assertContains('RESULTS', $html);
         static::assertContains('global.CONFIG = {', $html);
 
-        file_put_contents(TEST_FIXTURE_PATH . '/Parsers/EventCollectionPage/SimpleEvent/event_page.html', $crawler->html());
+//        file_put_contents(TEST_FIXTURE_PATH . '/Parsers/EventCollectionPage/SimpleEvent/event_page.html', $crawler->html());
     }
 
     /**
