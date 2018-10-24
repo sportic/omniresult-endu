@@ -4,6 +4,7 @@ namespace Sportic\Omniresult\Endu;
 
 use Sportic\Omniresult\Common\RequestDetector\HasDetectorTrait;
 use Sportic\Omniresult\Common\TimingClient;
+use Sportic\Omniresult\Endu\Parsers\EventCollectionPage;
 use Sportic\Omniresult\Endu\Scrapers\EventPage;
 use Sportic\Omniresult\Endu\Scrapers\ResultPage;
 use Sportic\Omniresult\Endu\Scrapers\ResultsPage;
@@ -22,7 +23,7 @@ class EnduClient extends TimingClient
      */
     public function eventCollection($parameters)
     {
-        return $this->executeScrapper(EventPage::class, $parameters);
+        return $this->executeScrapper(EventCollectionPage::class, $parameters);
     }
 
     /**
