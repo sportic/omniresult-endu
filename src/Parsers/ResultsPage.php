@@ -39,6 +39,7 @@ class ResultsPage extends AbstractParser
         }
         return $return;
     }
+
     /**
      * @param $config
      * @return Result
@@ -47,6 +48,7 @@ class ResultsPage extends AbstractParser
     {
         $matches = [
             'posGen' => 'pa',
+            'id' => 'bi',
             'bib' => 'bi',
             'full_name' => 'nm',
             'first_name' => 'nn',
@@ -57,13 +59,14 @@ class ResultsPage extends AbstractParser
             'time_gross' => 'tu',
             'time' => 'tr',
         ];
-        
+
         $parameters = [];
         foreach ($matches as $field => $key) {
             if (isset($config[$key])) {
                 $parameters[$field] = $config[$key];
             }
         }
+        $parameters['id'] = $this->getParameter('event') . '::' . $parameters['id'];
         $result = new Result($parameters);
         return $result;
     }

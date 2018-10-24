@@ -60,6 +60,7 @@ class ResultsPage extends AbstractScraper
         $this->getRequest();
 
         return [
+            'event' => $this->getParameter('event'),
             'response' => $this->getClient()->getResponse(),
         ];
     }

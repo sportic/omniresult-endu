@@ -14,8 +14,10 @@ class ResultsPageTest extends AbstractPageTest
 {
     public function testGenerateContentRaces()
     {
+        $parser = new PageParser();
+        $parser->setParameter('event', 42143);
         $parametersParsed = static::initParserFromFixturesJsonp(
-            new PageParser(),
+            $parser,
             (new PageScraper()),
             'ResultsPage/SimpleEvent/event_page'
         );
@@ -27,6 +29,7 @@ class ResultsPageTest extends AbstractPageTest
         $firstResult = $results[0];
         self::assertInstanceOf(Result::class, $firstResult);
 
+        self::assertSame('42143::5', $firstResult->getId());
         self::assertSame('1', $firstResult->getPosGen());
         self::assertSame('KIPKEMBOI HOSEA', $firstResult->getFullName());
         self::assertSame('2:11:31', $firstResult->getTime());
