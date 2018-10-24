@@ -11,31 +11,22 @@ use Sportic\Omniresult\Endu\Parsers\EventPage as Parser;
  *
  * @method Parser execute()
  */
-class ResultsPage extends AbstractScraper
+class ResultPage extends AbstractScraper
 {
     /**
      * @return mixed
      */
-    public function getS3Path()
+    public function getEvent()
     {
-        if (!$this->hasParameter('s3_path')) {
-            $this->initS3Path();
-        }
-        return $this->getParameter('s3_path');
-    }
-
-    protected function initS3Path()
-    {
-        $idEvent = $this->getParameter('event');
-        $this->setParameter('s3_path', Helper::generateEventPath($idEvent));
+        return $this->getParameter('event');
     }
 
     /**
      * @return mixed
      */
-    public function getHash()
+    public function getBib()
     {
-        return $this->getParameter('hash');
+        return $this->getParameter('bib');
     }
 
     /**
@@ -69,9 +60,11 @@ class ResultsPage extends AbstractScraper
      */
     public function getCrawlerUri()
     {
-        return $this->getAmazonS3Host()
-            . $this->getS3Path()
-            . 'results/jsonp/'
-            . $this->getHash();
+        return $this->getApiUriHost()
+            . '/events'
+            . '/' . $this->getEvent()
+            . '/result'
+            . '/' . $this->getBib()
+            . '/detail';
     }
 }

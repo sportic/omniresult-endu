@@ -2,7 +2,6 @@
 
 namespace Sportic\Omniresult\Endu\Tests\Parsers;
 
-use Sportic\Omniresult\Common\Models\Race;
 use Sportic\Omniresult\Common\Models\Result;
 use Sportic\Omniresult\Endu\Scrapers\ResultsPage as PageScraper;
 use Sportic\Omniresult\Endu\Parsers\ResultsPage as PageParser;

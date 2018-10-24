@@ -35,6 +35,14 @@ abstract class AbstractScraper extends \Sportic\Omniresult\Common\Scrapers\Abstr
     /**
      * @return string
      */
+    protected function getApiUriHost()
+    {
+        return 'https://apiah-staging.endu.net';
+    }
+
+    /**
+     * @return string
+     */
     protected function getAmazonS3Host()
     {
         return 'https://ecs-eventi.s3.amazonaws.com';

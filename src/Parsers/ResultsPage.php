@@ -57,6 +57,8 @@ class ResultsPage extends AbstractParser
             'time_gross' => 'tu',
             'time' => 'tr',
         ];
+
+        var_dump($config);
         
         $parameters = [];
         foreach ($matches as $field => $key) {

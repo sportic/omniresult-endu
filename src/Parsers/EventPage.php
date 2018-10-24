@@ -53,6 +53,7 @@ class EventPage extends AbstractParser
             'name' => $config['nm'],
             'endpoint' => $config['cl'][0]['da'],
         ];
+        var_dump($config);
         $race = new Race($parameters);
         return $race;
     }
