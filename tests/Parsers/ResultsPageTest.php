@@ -34,5 +34,12 @@ class ResultsPageTest extends AbstractPageTest
         self::assertSame('KIPKEMBOI HOSEA', $firstResult->getFullName());
         self::assertSame('2:11:31', $firstResult->getTime());
         self::assertSame('TOP', $firstResult->getCategory());
+
+        /** @var Result $lastResult */
+        $lastResult = array_pop($results);
+        self::assertInstanceOf(Result::class, $lastResult);
+        self::assertEquals('', $lastResult->getPosGen());
+        self::assertSame('disqualified', $lastResult->getStatus());
+        self::assertSame('2:12:17', $lastResult->getTime());
     }
 }
