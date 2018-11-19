@@ -49,7 +49,7 @@ class ResultsPage extends AbstractParser
     {
         $matches = [
             'posGen' => 'pa',
-            'id' => 'bi',
+            'id' => 'pi',
             'bib' => 'bi',
             'full_name' => 'nm',
             'first_name' => 'nn',
