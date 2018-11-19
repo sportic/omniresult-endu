@@ -32,4 +32,12 @@ class Helper extends \Sportic\Omniresult\Common\Helper
         }
         return '/' . implode('/', $parts) . '/';
     }
+
+    /**
+     * @return string
+     */
+    public static function slugsSeparator()
+    {
+        return '::';
+    }
 }

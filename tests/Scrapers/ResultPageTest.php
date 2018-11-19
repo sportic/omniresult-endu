@@ -12,6 +12,16 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 class ResultPageTest extends TestCase
 {
+
+    public function testInitFromIdParam()
+    {
+        $scraper = new ResultPage();
+        $scraper->initialize(['uid' => '42143::W24']);
+
+        self::assertSame('42143', $scraper->getEvent());
+        self::assertSame('W24', $scraper->getBib());
+    }
+
     public function testGetCrawlerUri()
     {
         $scraper = $this->getScraper();

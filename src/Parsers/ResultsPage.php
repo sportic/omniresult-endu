@@ -4,6 +4,7 @@ namespace Sportic\Omniresult\Endu\Parsers;
 
 use Sportic\Omniresult\Common\Content\ListContent;
 use Sportic\Omniresult\Common\Models\Result;
+use Sportic\Omniresult\Endu\Helper;
 
 /**
  * Class ResultsPage
@@ -66,7 +67,7 @@ class ResultsPage extends AbstractParser
                 $parameters[$field] = $config[$key];
             }
         }
-        $parameters['id'] = $this->getParameter('event') . '::' . $parameters['id'];
+        $parameters['id'] = $this->getParameter('event') . Helper::slugsSeparator() . $parameters['id'];
         $result = new Result($parameters);
         return $result;
     }

@@ -13,6 +13,17 @@ use Sportic\Omniresult\Endu\Parsers\EventPage as Parser;
  */
 class ResultPage extends AbstractScraper
 {
+
+    /**
+     * @param $value
+     */
+    public function setUid($value)
+    {
+        list($event, $bib) = explode(Helper::slugsSeparator(), $value);
+        $this->setParameter('event', $event);
+        $this->setParameter('bib', $bib);
+    }
+
     /**
      * @return mixed
      */
