@@ -68,7 +68,8 @@ class EventCollectionPage extends AbstractParser
             'system_lang',
             'www',
             'login',
-            'images'
+            'images',
+            'client_conf'
         ];
         foreach ($fields as $field) {
             $trans[' ' . $field . ':'] = ' "' . $field . '":';

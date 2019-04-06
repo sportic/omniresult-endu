@@ -7,7 +7,8 @@ $parameters = [
 ];
 
 $client = new \Sportic\Omniresult\Endu\EnduClient();
-$resultsParser = $client->event($parameters);
+$resultsParser = $client->eventCollection($parameters);
+
 /** @var \Sportic\Omniresult\Common\Models\Event $event */
 $event   = $resultsParser->getContent()->getRecord();
 
