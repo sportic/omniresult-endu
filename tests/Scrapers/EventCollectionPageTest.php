@@ -32,9 +32,9 @@ class EventCollectionPageTest extends TestCase
 
         $html =  $crawler->html();
 
-        static::assertContains('Bucharest Marathon', $html);
-        static::assertContains('RESULTS', $html);
-        static::assertContains('global.CONFIG = {', $html);
+        static::assertStringContainsString('Bucharest Marathon', $html);
+        static::assertStringContainsString('RESULTS', $html);
+        static::assertStringContainsString('global.CONFIG = {', $html);
 
 //        file_put_contents(TEST_FIXTURE_PATH . '/Parsers/EventCollectionPage/SimpleEvent/event_page.html', $crawler->html());
     }

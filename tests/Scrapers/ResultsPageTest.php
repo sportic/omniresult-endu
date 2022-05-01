@@ -34,7 +34,7 @@ class ResultsPageTest extends TestCase
 
         $response = $scraper->getClient()->getResponse();
         $responseContent = $response->getContent();
-        static::assertContains('Bucharest Marathon', $responseContent);
+        static::assertStringContainsString('Bucharest Marathon', $responseContent);
 //        file_put_contents(TEST_FIXTURE_PATH . '/Parsers/ResultsPage/SimpleEvent/event_page.jsonp', $responseContent);
     }
 

@@ -34,7 +34,7 @@ class EventPageTest extends TestCase
 
         $response = $scraper->getClient()->getResponse();
         $responseContent = $response->getContent();
-        static::assertContains('Marathon', $responseContent);
+        static::assertStringContainsString('Marathon', $responseContent);
 //        file_put_contents(TEST_FIXTURE_PATH . '/Parsers/ResultsPage/SimpleEvent/event_page.jsonp', $responseContent);
     }
 
