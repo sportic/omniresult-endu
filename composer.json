@@ -38,8 +38,6 @@
             "ByTIC\\GouttePhantomJs\\Composer\\PhantomInstaller::installPhantomJS"
         ],
         "post-update-cmd": [
-            "prefer-stable": true,
-            "minimum-stability": "dev"
             "ByTIC\\GouttePhantomJs\\Composer\\PhantomInstaller::installPhantomJS"
         ]
     },
